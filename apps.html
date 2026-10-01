@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explore Apps — AnyApps.in</title>
+<style>
+  :root{
+    --bg:#F7F9FC;
+    --ink:#141B2E;
+    --navy:#0F1B3D;
+    --blue:#2B5CE6;
+    --orange:#FF6B35;
+    --yellow:#FFB627;
+    --muted:#697086;
+    --line:#E4E8F0;
+    --card:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  a{text-decoration:none; color:inherit;}
+
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 20px;
+    background:#fff;
+    border-bottom:1px solid var(--line);
+    position:sticky;
+    top:0;
+    z-index:50;
+  }
+  .nav-logo{font-size:1.2rem; font-weight:800;}
+  .nav-logo span{color:var(--orange);}
+  .nav-cta{
+    background:var(--blue);
+    color:#fff;
+    font-size:0.8rem;
+    font-weight:700;
+    padding:8px 15px;
+    border-radius:24px;
+  }
+
+  .page-head{
+    max-width:900px;
+    margin:0 auto;
+    padding:36px 20px 6px;
+    text-align:center;
+  }
+  .page-head h1{font-size:1.5rem; font-weight:800; margin:0 0 6px;}
+  .page-head p{color:var(--muted); font-size:0.88rem; margin:0;}
+
+  main{
+    max-width:1000px;
+    margin:0 auto;
+    padding:20px 20px 50px;
+  }
+  .category{margin-top:44px;}
+  .category-head{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:20px;
+    padding:14px 20px;
+    border-radius:14px;
+    background:linear-gradient(135deg, var(--navy), #24345F);
+  }
+  .cat-icon{font-size:1.5rem;}
+  .cat-title{font-size:1.3rem; font-weight:800; margin:0; color:#fff; letter-spacing:0.3px;}
+  .cat-line{display:none;}
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(210px,1fr));
+    gap:14px;
+  }
+
+  .app-card{
+    background:#EAF0FF;
+    border:1px solid #D8E2FA;
+    border-radius:16px;
+    padding:18px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .app-card.clickable{
+    cursor:pointer;
+  }
+  .app-card.clickable:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 22px rgba(20,27,46,0.08);
+  }
+  .app-card.disabled{
+    opacity:0.6;
+  }
+  .app-top{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .app-logo{
+    width:46px;
+    height:46px;
+    border-radius:12px;
+    object-fit:cover;
+    flex-shrink:0;
+    background:#F1F3F8;
+  }
+  .app-name{font-size:0.98rem; font-weight:700;}
+  .app-body p{
+    margin:0;
+    font-size:0.82rem;
+    color:var(--muted);
+    line-height:1.4;
+  }
+  .app-footer{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    margin-top:2px;
+  }
+  .open-btn{font-size:0.78rem; font-weight:700; color:var(--blue);}
+  .demo-btn{
+    font-size:0.7rem;
+    font-weight:700;
+    padding:4px 10px;
+    border-radius:20px;
+    background:#EEF2FF;
+    color:var(--blue);
+  }
+  .demo-btn.active-demo{
+    background:#FFE8CC;
+    color:#B5590A;
+  }
+  .soon-badge{
+    font-size:0.7rem;
+    font-weight:700;
+    padding:4px 10px;
+    border-radius:20px;
+    background:#F1F3F8;
+    color:#9AA1B4;
+  }
+
+  footer{
+    background:var(--navy);
+    color:#CBD3EA;
+    padding:36px 20px 26px;
+    margin-top:60px;
+    text-align:center;
+  }
+  .footer-links{
+    font-size:0.85rem;
+    margin-bottom:14px;
+  }
+  .footer-links a{color:var(--yellow); font-weight:700; margin:0 10px;}
+  .footer-email{
+    font-size:0.85rem;
+    color:#CBD3EA;
+    margin-bottom:16px;
+  }
+  .footer-email a{color:var(--yellow); font-weight:700; text-decoration:none;}
+  .disclaimer{
+    font-size:0.78rem;
+    line-height:1.7;
+    color:#8B93B0;
+    max-width:700px;
+    margin:0 auto;
+  }
+  .disclaimer strong{color:#CBD3EA;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Any<span>Apps</span>.in</div>
+  <div style="display:flex; gap:10px; align-items:center;">
+    <a href="index.html" style="font-size:0.85rem; font-weight:700; color:var(--navy); text-decoration:none;">← Home</a>
+    <a class="nav-cta" href="mailto:vkvcoder.support@gmail.com">Get In Touch</a>
+  </div>
+</nav>
+
+<div class="page-head">
+  <h1>Explore All Apps</h1>
+  <p>Tap any app to open it. Don't see what you need? <a href="mailto:vkvcoder.support@gmail.com" style="color:var(--blue); font-weight:700;">We'll build it for you →</a></p>
+</div>
+
+<main>
+
+  <div class="category">
+    <div class="category-head">
+      <span class="cat-icon">📅</span>
+      <h2 class="cat-title">Appointments</h2>
+      <div class="cat-line"></div>
+    </div>
+    <div class="grid">
+
+      <div class="app-card clickable" data-href="https://appointment.anyapps.in" onclick="if(!event.target.closest('a')) window.open(this.dataset.href, '_blank')">
+        <div class="app-top">
+          <img class="app-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABQCAYAAACZM2JkAAAI+ElEQVR4nO1cW6gkRxn+arrncs6ZObfZ2ZzdzSpBvO1uEkTQZTUGdR8MXvKUqDEIeRBUDOKDSEQ3sEHY3IQgBhQfhCCiBATxxeCbD2Yfwi6skmxuLPGY3dnsmTP3nu7prvJhbt3Vl+merqrpI34wZ/r0dP3/X39//Vf9Vf8M2fjcVxiSInkLMfDpZQAIdyzIOMF91JepPLmuIGeGHYvQJw65xC3I/EuEgATpIgEfBl6YTp+EPoYzOuwOy7rzPrLGDQUSWCyhj8kZ/X8shHBHC3oiY8MXCfgT/HMtMFwo6Gfy0CELoTMK/gPGvYvQJR/RoUM1owl/wv2BBCYH6pWDGaOD7rKygS/0pFijltLHkYIZo1XG5ECyhk3d+EYp9aru41ipXlldjeSR2y7mOSI+m0c3b3IVASGj/6hD4VAK23FgO47aZGRpWay3P/pt25szgwRmsGFwKEWr20WnZ8B2nMmTBT+LBRnEM0VBH0d6x4rZ6D1ZCi4AWi6H7fV1bFUqGNoO9lot9AxTtRnKoYtaKgjFLJJ45BMQFHQdR6rbGFhD3Gq2MLCskMYp9MY9nxbc4MdDfmY4dypFUCoUcOxwDVuViutCgXpVwD34EX8mJN/RLOAVAAKgurGOnUPVaXgTok8VGBvrY2NWew1Qx+iYzlsrFXGsVgVZ1NuSV+HC9RLXNFUFo90Z8gLsIiAoFYo4vLWVXC+vS2Y8BsYs5l4hnRbvaEGpbWV1BdWN9WR6l5GMkKCY7DdEDqMFxcitSgXFfD6+LlUxmY/HvpjsNyTz69FHDm0vHq8zBDmhQ6BfdE3DWqkUrUv14Bc68IUbkM7RfLIj5REmOLS54WV1WMiQlXCFDX4JYlc6R/OLa5IYpWsaSoWCEl0+eHSFDXzzjUnPaEWDUXmltMSBLyoZiWdMekYrYtfaysoS43F0MhIHyRydMhlJA13TUND1TCYjcZDM0Yr32XgU3XFaFkLjcbpHKfPzaDfyuvLlc2EIdPTD953Fj775Nf8H3JPz5XtO48ePPIRCXo0DtJwCXoQOfOlils/yvK7hoS98Hg+cvRe3H655P+RCxjfuO4svfvo0KmurCylPipyKDHGBZCQO9Bwh2N5YRyGvg4Agr2vQx8w5VquCuXcMuJtZKhRACMGRahWl/Ch+OtRBs9vDwOR3S9JD+Pg32RUBQndGRIFcefNt9qH3HUde14SsKTgORaffx3cuPIc33tkVYOIM7V4fNxv7QmVOMXE6Cz2RCoQxxlqdLi6/8RYoZcjlCE6fOoFiIY+L/3wN/cEgtPEnTn4EK8UC/nHlVVjDIQDgaK2KD7//OG7sNfDVx84L3Xjt9Pqoi3Q081BanNwA6IZp4us/+Rlu7jcBjEb2Pz/7BGqFTTz9wh9w7d0boY1ffPJxHK1V8cRvXsCtZmva/o8Xforjtx3Gp+46hZcuviLMWOGu8Kyf+KpUhKrKDUwLnX5/KpdSik7fgGFaaHY6kY3rjX0YpgXbsafnhraNa9frAIDtJAv3MZA6sElKRubqZJO6Dpdcx6F45PxTyOs6mp1epIwfPvcrlAp5tLrcdZKeQlXLGzKgE0JQLOTBXN1wHAeO46BU5HY3uJ5SStEfmL5dEFnz3dSM9mR94PojdvDjdeqblTL+9vwzYoVLQmoXuOvhAoUJDhku6JQxdHp973w5JdZWStlMl7l6OC/kMHkiVm93e3jwsfNCE4wL3/sWztx9Upi8hTAlr+LIHqJOZ4yhPzBjOzqfI3jy1FGcXC/h0cu7eL3rnyc7lKYxVQwIdyAxGQnUy4eOJDLKeg6Pn9jBZ2pl2Ixhu6AJsi4eEg2GXH2y36eCnTxHXA4IrDvEl3bWccfabP23qBGc++gOPlurgDKGZ6/W8XKjL9bYOUjkGkmLQ+H6okUHMvqTW6s4d2IHJmV49NIuLrcMPH3nMZyproEyhnP/uo6X6tHJjAwc5OoOHfAz5VLTwFs9Cx8sF/HLj92Oq10Td22swGYMz1yt46/1zlKSh0idyxj8EqgKzCwsyvD9y7t4rT1AUcuNnEwZfvHme3jxP62lZWiRjI4sCZjbenGDYkajkaMDPHfTtPHdS//GrmHBohRPvV7H796RtEQZE9GMjioJmNs6uSEJl0ZGMTrkjrRtigdfvoaynsO+5QiyUhJCkxF1U7gozJ3eWZShkREnT12YsWQkDjKYJ8cAvzgELDUZiQOdEJLuOyNBQrVx6JfFuCUuDi2K3PraKu65+04x0gBsVco4+YE7AABv774rTO5BB2Fj2rV7fSExb22lBE3T8PdLV/CDnz+fWp4bvj1D2WwWKFq/8Nvf4/57z2CzXIaIGLLX7uDilVfx6z/9JbUsALPOTQY/VQOg6FXTjz/87QOzQ9Tq9PBesxkw8E2OJUCQ2OzPOtiM0g51AhitdhVuUWTf0a5wZtsOvNlVtqZwQaImYrLn6IhkxLQsZD1EhInMXtluyOIQZQzmcAgpi0MTvRLXYbPn6BD0jPDStIOADIaO4KyvZxiTCwTqEidqnpLsMTpgC8qhDMZAwq/UCN7d4r98QVxKlsvomPXJjVZL7M665PGUjf8ykGm/lutowv0TUBJAqYN2z+BbitErNXSMfkWNjaenS2Y0l9kFlATcaOyDMUFsVhaTR4zJEKOj65M7vT76ImcbEpIRt8jROeJ9XwqjE+yMDCxLTHW/kng8Opow2P9ZFmcdAGzbxvVbe8s2QyjUMjpGffLANHF9rwHHERSXJS+NuBVNQsXooWUghEx3mRSHjugtqHavJ+5bV0oHvtGxL3S4QqRiRgeVBDA4lKLe2M/swDcRx3zvxKXGy2jfj8CKMSMAMQY+hzI0mi20+0bmp3BhyUhQiQ7znZHp6JD6ZEopeoaBrjHAwDTF11IrTkZmie0sJvPsB8YV/7LKIMYmwHYobNuGORzCtIay1CiAPxnxMJqx6VW8Sfrki5xSbfMge8UtQaJ4RoYlI7PqqejCnUzOo/8XIS5GL6MeTtHAN/obnPWxwJZ+iGN0xuuT0yoZLZGT6S9ATN9d6omnhfclkNEHrx5uvpJZzA1LRqKmd+6I/V/L7A6a1NWkXwAAAABJRU5ErkJggg==" alt="Appointment">
+          <div class="app-name">Appointment</div>
+        </div>
+        <div class="app-body"><p>Doctors, CAs & consultants manage their appointment slots — clients can book directly.</p></div>
+        <div class="app-footer">
+          <a class="open-btn" href="https://appointment.anyapps.in" target="_blank">Open App →</a>
+          <a class="demo-btn active-demo" href="https://appointment.anyapps.in/dashboard.html?demo=1" target="_blank">Try Demo</a>
+        </div>
+      </div>
+
+      <div class="app-card clickable" data-href="https://salontrack.anyapps.in" onclick="if(!event.target.closest('a')) window.open(this.dataset.href, '_blank')">
+        <div class="app-top">
+          <img class="app-logo" src="data:image/png;base64,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" alt="Salon Track">
+          <div class="app-name">Salon Track</div>
+        </div>
+        <div class="app-body"><p>Manage salon appointments, clients and schedules.</p></div>
+        <div class="app-footer">
+          <a class="open-btn" href="https://salontrack.anyapps.in" target="_blank">Open App →</a>
+          <a class="demo-btn" href="mailto:vkvcoder.support@gmail.com">Request Demo</a>
+        </div>
+      </div>
+
+      <div class="app-card clickable" data-href="https://consulttrack.anyapps.in" onclick="if(!event.target.closest('a')) window.open(this.dataset.href, '_blank')">
+        <div class="app-top">
+          <img class="app-logo" src="data:image/png;base64,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" alt="ConsulTrack">
+          <div class="app-name">ConsulTrack</div>
+        </div>
+        <div class="app-body"><p>Record doctor consultation charges — useful for radiologists.</p></div>
+        <div class="app-footer">
+          <a class="open-btn" href="https://consulttrack.anyapps.in" target="_blank">Open App →</a>
+          <a class="demo-btn active-demo" href="https://consulttrack.anyapps.in/?demo=1" target="_blank">Try Demo</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-head">
+      <span class="cat-icon">💰</span>
+      <h2 class="cat-title">Finance</h2>
+      <div class="cat-line"></div>
+    </div>
+    <div class="grid">
+
+      <div class="app-card clickable" data-href="https://merahissab.anyapps.in" onclick="if(!event.target.closest('a')) window.open(this.dataset.href, '_blank')">
+        <div class="app-top">
+          <img class="app-logo" src="data:image/png;base64,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" alt="Mera Hisaab">
+          <div class="app-name">Mera Hisaab</div>
+        </div>
+        <div class="app-body"><p>Track your daily income & expenses across various accounts and credit cards, simply and clearly.</p></div>
+        <div class="app-footer">
+          <a class="open-btn" href="https://merahissab.anyapps.in" target="_blank">Open App →</a>
+          <a class="demo-btn" href="mailto:vkvcoder.support@gmail.com">Request Demo</a>
+        </div>
+      </div>
+
+      <div class="app-card clickable" data-href="https://personalcash.anyapps.in" onclick="if(!event.target.closest('a')) window.open(this.dataset.href, '_blank')">
+        <div class="app-top">
+          <img class="app-logo" src="data:image/png;base64,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" alt="Personal Cash">
+          <div class="app-name">Personal Cash</div>
+        </div>
+        <div class="app-body"><p>Simple personal cash tracking across various accounts and credit cards, anytime, anywhere.</p></div>
+        <div class="app-footer">
+          <a class="open-btn" href="https://personalcash.anyapps.in" target="_blank">Open App →</a>
+          <a class="demo-btn" href="mailto:vkvcoder.support@gmail.com">Request Demo</a>
+        </div>
+      </div>
+
+      <div class="app-card clickable" data-href="https://familycash.anyapps.in" onclick="if(!event.target.closest('a')) window.open(this.dataset.href, '_blank')">
+        <div class="app-top">
+          <img class="app-logo" src="data:image/png;base64,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" alt="Family Cash">
+          <div class="app-name">Family Cash</div>
+        </div>
+        <div class="app-body"><p>Track shared family expenses across various accounts and credit cards, together.</p></div>
+        <div class="app-footer">
+          <a class="open-btn" href="https://familycash.anyapps.in" target="_blank">Open App →</a>
+          <a class="demo-btn active-demo" href="https://familycash.anyapps.in/?demo=1" target="_blank">Try Demo</a>
+        </div>
+      </div>
+
+      <div class="app-card clickable" data-href="https://pettycash.anyapps.in" onclick="if(!event.target.closest('a')) window.open(this.dataset.href, '_blank')">
+        <div class="app-top">
+          <img class="app-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAwCAYAAABqkJjhAAADlElEQVR4nO2ZzWtcVRTAf+feycxkZjKJGjGNRfpBKxgaLVhCS5BBFNxIUfwHBMWNC/8DQYTSbkS3blRw40JcVEXwqzu1Gg1tDFQM0ljTFqOTj/l6M/ceF0lTnDeNLy/zMhHy2w338O7vnblzzntnpLq0oLShqlQrS5w9/yfvXEy1L+8oL51s8cpTw+Tyg4gIplNQENR57aNF3v3e7rRfiLe/sZw9v0irGQCEhb1zfDe7wAfTBlXZccGQjwrvTxl+unIN711YeLW6yuufKc73XvYWTSe8+qlSrVbDwr8uVJi92fuj0M7l65bfbqyGhaev1nrhE4mZ3ztkuBr4XrhEot70YWENFbndg6p2Lmu7mT3hpEmk7xptcaQ6xcHaDCDMD4zzc/phVLZfLhPIsDJR/oTJ+hc4b9FGi1MrnzNR+borv+iuZ3gouMmDtR/5tvgEl/OnAGVi8WMeCS5yqf9RKnZwW9ePLfxY5QJj9RksLryYuZtSY4pSY2rtswCa5/nye6HQllhm0w9xoVBKTtio43D9CuJbbLfNGFqMBvOR42Nn2HvF+e50GW+i33Ys4bRvIC7A0yXhLXxNsYQ9glPBdKmPexP9OrGEVYRmTTF9inR4bE5Z4dBoHllf9F6Z+6PS8QipQtBIWFgUshlDc0UxmbBxFsOJgwWE22vlcoPrfzdDsa4qFEcyyQqrCCaV4q7hHOo97Uc5Kx4Ngn9vZNMUc+19SpA8lG30/tWFxiHQnmQD1FY2josHmi1Lp/OjbK0Bxsswgtf1stZht6ozfHhJUe8xKbt+Q3e20i2UiZgZFpxTvG6ykQDW4FU3cwVYi4lI/MaBdqkK78iRWNvEd6vTJZ1hL4YmFq/hMhULia4Rs6xZfiie5Mhf0yjpOJfYwAjM545Fjg8Jm4gDn7niMeaK0TfqBh2HgfcUejut3IyhfCosfOJwjv+sQz1BOX4gHxa+d6jA6bEObxE95rlxx/BQISycz+V4YTJNf9/uyXIxo7w4maE/2x8WFhHGDu3jzWccuV0gXUgrbzzrOXpg350n8KlUH48f38+Zp2FkoHfSo4Oec6ehNH4/1q4VA+n0H8ctvHfMX1vgra/qfPmLZaUBgYPw41m3UNIWBrLw5FHPy6Us+0dHMOb2AGZTYVibGLZci+XlZa7eWEJdE5Fksu4RjOnjgfuGGCwWsdZuvLVEFt5t/O+GgXvCSbMnnDR7wkmzJ5w0/wBSyF1FviL+PAAAAABJRU5ErkJggg==" alt="Petty Cash">
+          <div class="app-name">Petty Cash</div>
+        </div>
+        <div class="app-body"><p>Corporate petty cash management across various accounts and credit cards, with branches sync.</p></div>
+        <div class="app-footer">
+          <a class="open-btn" href="https://pettycash.anyapps.in" target="_blank">Open App →</a>
+          <a class="demo-btn" href="mailto:vkvcoder.support@gmail.com">Request Demo</a>
+        </div>
+      </div>
+
+      <div class="app-card clickable" data-href="https://vkv-coder.github.io/Contract-Note-Converter/" onclick="if(!event.target.closest('a')) window.open(this.dataset.href, '_blank')">
+        <div class="app-top">
+          <div class="app-logo" style="display:flex; align-items:center; justify-content:center; font-size:1.4rem; background:linear-gradient(135deg,#1565C0,#0D47A1); color:#fff;">📊</div>
+          <div class="app-name">Contract Note Converter</div>
+        </div>
+        <div class="app-body"><p>Upload broker contract notes (Zerodha, mStock, Axis) — auto-extracts trades and auto-calculates capital gains into one consolidated Excel history.</p></div>
+        <div class="app-footer">
+          <a class="open-btn" href="https://vkv-coder.github.io/Contract-Note-Converter/" target="_blank">Open App →</a>
+          <a class="demo-btn" href="mailto:vkvcoder.support@gmail.com">Request Demo</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-head">
+      <span class="cat-icon">🙏</span>
+      <h2 class="cat-title">Club</h2>
+      <div class="cat-line"></div>
+    </div>
+    <div class="grid">
+
+      <div class="app-card clickable" data-href="https://derasar-boli.anyapps.in" onclick="if(!event.target.closest('a')) window.open(this.dataset.href, '_blank')">
+        <div class="app-top">
+          <img class="app-logo" src="data:image/png;base64,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" alt="Derasar Boli">
+          <div class="app-name">Derasar Boli</div>
+        </div>
+        <div class="app-body"><p>Manage Derasar boli records for your community.</p></div>
+        <div class="app-footer">
+          <a class="open-btn" href="https://derasar-boli.anyapps.in" target="_blank">Open App →</a>
+          <a class="demo-btn active-demo" href="https://derasar-boli.anyapps.in/demo.html" target="_blank">Try Demo</a>
+        </div>
+      </div>
+
+      <div class="app-card clickable" data-href="https://clubattendance.anyapps.in" onclick="if(!event.target.closest('a')) window.open(this.dataset.href, '_blank')">
+        <div class="app-top">
+          <img class="app-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAwCAYAAABqkJjhAAAEMklEQVR4nO2Yy28bRRzHP7MzY68fcZ3ESdOmpU4fqVqK+ghthVoJNQXa8qh6Q0g9VNALR4TUOxKXHkBI/ANwQOKA1AsckEDiAKrIoSBRkApJgYr0kfSRNLbXu/bucEgTO7XV2l07caV8T/vbmZ356Kud329mRGH2hqFKd+5Mc+jtcUDQWTJc/GwY6+HXY7/N0HmwAIJLf9yrBb4x5awETUOauu3UApd8U69vR8gPTC0wncuLMdQB7nCpdgwqLcMrezwObFcILC7/Z3PhJxc/CD92y4F3Z8u8cdDQ3ZVAa4Xnldg5MMOuN22+/TXCz1dKBCHAWwRsWBM3nDnqsqE/jlYKEBhj0FqTyXRTKpV4aed9Tuzv5ZMLDnfnnmyxhAa2dcCZUYfBvghxO4EQ86ALEgJAzIP3pcnl5jj7Yp5Iai0ffeXgeMsIfGyPy8HtkEomEUIg5ukeABvmC5DAmEpbV1eCRCLOzL0Zzp2SXJlK8eUPheUBHlrrk+npeWSfBVAQi25LCX39vTiOQ38+TzOVNVRa+2XC4AcWGAFYGCPmF9RiDL5vMAEPngPKZR+/HOD7AUrbTOYyTc0ZyuGxiTi37/7NyPrr2DGbiav/4Lp5hrJbsO0oVyfGcUseQ9nNxGIxxsf/wiv5DGU3EY8lGLvWz5Wp7qbmDOWwMYKbuR527trOqVMnuZ/zyM/l2LJ1E6NHj1DIF8jdnyO7eSOvv/YqTsFhZrZIdvMmTp9+i+liP0GTyaKleVhJjZGRxVjKCFL6S9qlDFc9WgosLYWxKkMqqVCyEkupkZZf79OG1VpgqaDKYSUjKKtciS2NtMLttVv7S1gaIXUllgq1JNYo2UHA0tIIqwrQqudwuDlavOgUwUOOypo43Ia7tQ4LjVXlsLQ0aonjGmWtIPDxA3G2rXOJJxPcmr7HkZd3U3TypLtTlD2Xw6MjOMUC6e4Us7MzHBodoei5pHq6uTZ5k3dOxLj8r803F+eWB/jYvoBkslKp+gYyQKXUZtb1LelfHQeBx9YNEXZtifL9pTxFt7H8HAp4tmAoEy6v2qUAt0FYqAfcRNb58AsXcBv/oI4EjZ97hagDHNWN551yOHOblpJW7eYnO5hYXoom9Mz6RC3w3h1p7EjnXU7EoobnhtO1wPFEkg/Odq0E0yN1/t0UsXiyFljrCIdG1rN3W1uuLJ5IB59V7N8ziFK6/ga+tzfNp+cG2De88tAHdig+fm8d6fQaAMTD98PVmp66zvnPb/HdmEvRWzgFL4cMsajg+As2758eINM3sNjySGBjDJ7n8uf4JGO/5/n6R5fxyTKlcnvAtTJs26g4edjm+R1xhrcOoiPRqpP3Y4Crwf1yiaLrYhG0zWhjwGBhR6NIpZeALqihn1QIgdIRkjry+M5t1lN33boK3G6tArdbq8Dt1ipwu7UK3G49dcD/AypbUVssLEJPAAAAAElFTkSuQmCC" alt="Club Attendance">
+          <div class="app-name">Club Attendance</div>
+        </div>
+        <div class="app-body"><p>Track member attendance for your club or organization.</p></div>
+        <div class="app-footer">
+          <a class="open-btn" href="https://clubattendance.anyapps.in" target="_blank">Open App →</a>
+          <a class="demo-btn" href="mailto:vkvcoder.support@gmail.com">Request Demo</a>
+        </div>
+      </div>
+
+      <div class="app-card clickable" data-href="https://sportbook.in" onclick="if(!event.target.closest('a')) window.open(this.dataset.href, '_blank')">
+        <div class="app-top">
+          <img class="app-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAJEUlEQVR4nO2cS2xcVxnHf+fcO2+Px/bEeTQKdhondUKakoiSlLTiIVpR0QqpQIFSCVWwYcECwYIFmy7YA5uK1wpVUFVlQytVbXi0i7bQIlFES6JCDDTNw4lf43ncmbn3fCzueOyxx+O5vmNfJ5qfNPLc95n/fOc73znfN1a79n9U6LNpdNQNuNnpCxiSvoAh6QsYkr6AIbHDXKyATFKRsr3mvmQMrJBfi2ugWl+7v+5BsWbjeibcA3rIJgUUdg/aPPmww+Rel6TtoRpHEjHQquPFG+IaqLtr99c9uFGy+ekrFufO27gGIOTDQqI2EweeHnf58VccxvPhxdoMlRo8/ZcYT/4uTtWLVsDAnW0oJXz/szUO5v2uqtT2v9IJ+MKpOmN5A0Q7Dwjche+53eXUmEAihxvPg44jdhp0rHetMi7KK/nvPRclDoiAqaHEgOeQS5U4NGp4b1pHKmFgAc/eYaEOPUpp32eQxB7QNijLN41eIQLiD0xiPJQyiDEoUwHjouuL6Ot/5uT4b3n5n9LwhdEQWMCJM49Rm/gqyor7O3opXDtEmhYm+EOGAczQMe48XcB+6fe4JjobDOQDU8kEB0896Iu35JC2GKVUy6v5XB1j4uzj6Fhiy9vQiUACnjh+mOzQ8LYI1w3Du/aQHx6KtA2BBDx54iiWtraqLYFRSrF790ikbQjkAycOjaG1whjfa4vZBu+91HXX7gYUo/mhrW9DB7oWUClFJp2kuDBPvVZFjIdsg/Nu+r7VMw4FiVSa4dzglrehE10LaFkWCUtRXJiLePK0TM2pkIpbaKUwEs1I3L0FIjjlkh+jNbpULJEkFk+0GocINcfBrdd63da2bIsb6UDXAmqtSaeWQ4ZEOkNuZBdK6xYfZYxhcfbGtgkYNYF8YCq5LGB2aARtWU3xjOdRdcpUikWqTqX3Ld2hBBLQbiz0WbaN1RBPRKjXqhRmZ3BrVSQiXxQVXQtojKHiVAHQeoXlGY/CzHXqtQ26rAgslmB6FkaHIZvZttnMVhIoDmwZ6Rqf2ymXNhYPYL6I/YMfoS5dRXJZzMlJzDe+BIOZIE3YcYRa0hcRyouFrs5Vf3sXdf4iqu6i5gro/13BvHsR9ztfh8mDoG/O9MymWy0C1XIZtxvrA+Tu45hTx0D5xquMwbowhf7DGxBxKBKGrgUUEWo1P1HheR5evU6xMN/9kzJpvK89hBlo7bJqfhEiXI4KS9cCGhGqDWsznsvc9FXqVaf7JykFRw/BcOvUyxwZD5/Gi5BNt9zz2qTNNiLeJuc5OHBTj8ShBpEWFhZRf78AAxlk8iCkkmvPUWptFjKTZM3OioO6eAk+uIYcPwx7d607yJQqTmTzYAggoIhQrbsrp8It6F+/gP3si6At3Afvw3zry2DHli72X54H3qoPe20GLlxEXbuBunID9d8PUP9+H/3+NXCqyG2jeI/cj3ngXsim1zy8WmuTgd9GAgno1tbvtpLLgmtQ4mG/8ApeYdEXyzNQraEqDnge6vJ0awOeesbXxAiIafyVpk2qS9dQT/0Gt1LFPPYQWDuru/esC8vH7oSfPwuuh6q7WH96czllu0KQ1eh6FxYUs5GxfVEXIbSldz5wKIsMpP2wBHxLSsT90gXLwsT97qwWiihvuZZG8jkkucJfaoWankVVl+NL9+FPIWc+siMHmwBzYaHkOCwnF1eRTiEjOWR+0T9qaerfewIZuw0sC+L+o6wf/gzr/MXmHerf/CJy953L99Ea6+nnsZ97yX/unjzmkfv9EXwHEsgCvU5VUbEYMr4fpi41u64MDcKR8dYRNLUqDZnLwuhIq3VVq8235tghGIp22b4TvYtgLY05ejuyJJYIqlBce95qAVcjgvrHv5qbZvL2pvXuRAIJWG9Xc7aEUshdkxBvVCwIUGrUtKxk6fh6zMyjb8z5t9AaOTzWcaHBqUa78h1IwOkbc50XTA8dQIayjQ1BFRYDF0+pS1fB9b8oyaTgQ/s6Dh6OE62AwXzgRqsmto0cGYcr133hZufh8nTr9K2yav48Mw8XpsCpoVwX9dY70Ig3zcmjvo/cwfTWuSiFHJ9AXn0LRLDOvY715jutg/b12dYG/PI5iNlQq6O8Rmlq44tSF6Z8cY8fiaaSswsCCVgslte4tNWYE3cgyQS64qAKJSiUOp6vl+LGdseuzaBffq0xkNwCYczM3AKykVM7sA8Z24ecn/Ljwnyu5bCanvWD6ca2d2APJNcfmWX/7h1rfdDrLgyQTuJ97pPoqQ9wP/9p5NEHW3yg9ZNfYT3/SnPb/e4TcGyiQwstPxDfofReQK2RBz5ObW8eDuz1l7VWWlA61Xp+PNbRAjfCcQIs6m4BgQS8fHWmu4KiVBJO39X+WAix2lGOOIwJFAfWIl57a0+0+ZTtT0bcpOnL9Qj0aeYWFkOXbph8LlwSaZ2Cy6gI9EkKxUr4DhOzWYqs/XsFEyM7NEJ2OB+2FT1j+5c57NiyZol4sABZKZKZTKMmUAEStQsM7gPL5ZClayODy37Q1oF8YiqdQWuLlVa7WIq2lC6wgGGXj2TfaHN9T+xYo0t3R2pgcI3/c91N5Kd7yPYPiXt34X34MGJpf7V5JLfxNUAynSEWjzcE3DmlIIF9oONUNz6pE5aF9+3HkTfexpw9CQPpDS9JZbJkh0dQje7uB/M7Q8TAApYrIQUEOLAXs3+37/86hCR2PMHAYI54Ko1eUYu9qbKSLSKwgO6KlOSmUarjAkEskSCVyZJIpbFsu3HJUkWswSkt51o6Jrq2gcACzi+0SRT1EDsWI5cfxY7FWwYMEUGMoVws4FTKzf3FsFFBSAIL+N7UJe47cxfWFi0xua5LebHgC6g1xvMQMbiui1ertpQTF+cLuFH+WJhNCHju1b9y7+kTTE6Mbc2UqsuyYdfz+MUzLzZrFqNiU/90YvzAHj5xz0mGh7JtZ2IxyyKVTISqxHCqdarr1c0IXHjvP/zxtbcjT2tuSsANb6oU8VjrjCEodddr/ip0J7Mlc2ERodqhFO5W4tZanIuAvoAh6QsYkr6AIekLGJK+gCHpCxiSvoAh6QsYkr6AIekLGJK+gCHpCxiSvoAh6QsYkr6AIfk/k2c416gh4nMAAAAASUVORK5CYII=" alt="Sportbook">
+          <div class="app-name">Sportbook</div>
+        </div>
+        <div class="app-body"><p>Slot booking for club games — elaborate dashboard for club management.</p></div>
+        <div class="app-footer">
+          <a class="open-btn" href="https://sportbook.in" target="_blank">Open App →</a>
+          <a class="demo-btn active-demo" href="https://sportbook.in/mahjong/club-admin.html?demo=1" target="_blank">Try Demo</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-head">
+      <span class="cat-icon">💍</span>
+      <h2 class="cat-title">Matrimony</h2>
+      <div class="cat-line"></div>
+    </div>
+    <div class="grid">
+
+      <div class="app-card clickable" data-href="https://jainvivah.anyapps.in" onclick="if(!event.target.closest('a')) window.open(this.dataset.href, '_blank')">
+        <div class="app-top">
+          <div class="app-logo" style="display:flex; align-items:center; justify-content:center; font-size:1.4rem; background:linear-gradient(135deg,#7B1E3B,#5A1329); color:#fff;">💍</div>
+          <div class="app-name">Jain Vivah</div>
+        </div>
+        <div class="app-body"><p>A privacy-first matrimonial platform for the Jain community — contact details are shared only once both sides accept, and every photo is watermarked to the viewer to prevent misuse.</p></div>
+        <div class="app-footer">
+          <a class="open-btn" href="https://jainvivah.anyapps.in" target="_blank">Open App →</a>
+          <a class="demo-btn" href="mailto:vkvcoder.support@gmail.com">Request Demo</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-head">
+      <span class="cat-icon">🔔</span>
+      <h2 class="cat-title">Productivity</h2>
+      <div class="cat-line"></div>
+    </div>
+    <div class="grid">
+
+      <div class="app-card clickable" data-href="https://reminders.anyapps.in" onclick="if(!event.target.closest('a')) window.open(this.dataset.href, '_blank')">
+        <div class="app-top">
+          <div class="app-logo" style="display:flex; align-items:center; justify-content:center; font-size:1.4rem; background:linear-gradient(135deg,#4a6cf7,#6a4cf7); color:#fff;">🔔</div>
+          <div class="app-name">Reminders & To-Do</div>
+        </div>
+        <div class="app-body"><p>Set reminders and to-dos, assign tasks to staff and get notified, with Telegram alerts.</p></div>
+        <div class="app-footer">
+          <a class="open-btn" href="https://reminders.anyapps.in" target="_blank">Open App →</a>
+          <a class="demo-btn active-demo" href="https://reminders.anyapps.in/auth.html?demo=1" target="_blank">Try Demo</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-head">
+      <span class="cat-icon">🛍️</span>
+      <h2 class="cat-title">Shopping / Deals</h2>
+      <div class="cat-line"></div>
+    </div>
+    <div class="grid">
+
+      <div class="app-card clickable" data-href="https://deallagi.com" onclick="if(!event.target.closest('a')) window.open(this.dataset.href, '_blank')">
+        <div class="app-top">
+          <img class="app-logo" src="data:image/png;base64,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" alt="Deal Lagi">
+          <div class="app-name">Deal Lagi</div>
+        </div>
+        <div class="app-body"><p>Get notified when a big discount is offered by your choice of e-commerce site.</p></div>
+        <div class="app-footer">
+          <a class="open-btn" href="https://deallagi.com" target="_blank">Open App →</a>
+          <a class="demo-btn" href="mailto:vkvcoder.support@gmail.com">Request Demo</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-head">
+      <span class="cat-icon">🎟️</span>
+      <h2 class="cat-title">Events</h2>
+      <div class="cat-line"></div>
+    </div>
+    <div class="grid">
+
+      <div class="app-card clickable" data-href="https://khursilo.in" onclick="if(!event.target.closest('a')) window.open(this.dataset.href, '_blank')">
+        <div class="app-top">
+          <img class="app-logo" src="data:image/png;base64,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" alt="Seatbook">
+          <div class="app-name">Seatbook</div>
+        </div>
+        <div class="app-body"><p>Event booking made simple and customised — your seat, your choice.</p></div>
+        <div class="app-footer">
+          <a class="open-btn" href="https://khursilo.in" target="_blank">Open App →</a>
+          <a class="demo-btn active-demo" href="https://khursilo.in/organiser-dashboard.html?demo=1" target="_blank">Try Demo</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-head">
+      <span class="cat-icon">🧰</span>
+      <h2 class="cat-title">Utility</h2>
+      <div class="cat-line"></div>
+    </div>
+    <div class="grid">
+
+      <div class="app-card clickable" data-href="https://gaushala.anyapps.in" onclick="if(!event.target.closest('a')) window.open(this.dataset.href, '_blank')">
+        <div class="app-top">
+          <img class="app-logo" src="data:image/png;base64,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" alt="Dairy Diary">
+          <div class="app-name">Dairy Diary</div>
+        </div>
+        <div class="app-body"><p>Daily milk record keeping made easy.</p></div>
+        <div class="app-footer">
+          <a class="open-btn" href="https://gaushala.anyapps.in" target="_blank">Open App →</a>
+          <a class="demo-btn" href="mailto:vkvcoder.support@gmail.com">Request Demo</a>
+        </div>
+      </div>
+
+      <div class="app-card clickable" data-href="https://my-catering.anyapps.in" onclick="if(!event.target.closest('a')) window.open(this.dataset.href, '_blank')">
+        <div class="app-top">
+          <img class="app-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAxCAYAAAChzEtEAAAEEElEQVR4nO2YWW9cNRSAPy/Xs880aUMStRUIhFqBEP//GR5AKqJIBdECEkWCJqmS2e7c1fbhYZIqNGnIJJl0EPO9+t7jT17Osa2y8SvhFNPxIf2NXZRSrBIiwmT0Cn1ew6rJAiiliCGcJxzfh8+lkBjPCq8yAv8tYVgLL58rCccY+fqrHzk6nPLtN79QFBVPnvyK92GhOD89+4On379c6B+70NfHeB8pUsH7yHRYkaYV48OKWVrQH7QZDjPKtImvABRKC+2uRruCwaCJUoqn3/3G3l8pzZbj+c8HPHr8wfKET1BKIcxztzGGLK+ZDitUvQmcmr4I+QiMbZKnKf2NwP7eGKUsVemZZbNL93kt4RfP94gh8uyH30Ec431Hr91HRIhRKPOauvIkzuCaDhGF8l0moQbMcRS5oIcbFp6OCpRSVIWgtcfoZF5Cj3KigNKAKIosMJumGKvY3OpRZxqtLFHCgrpXFLZWozWnSrgieI9LHGXpcR2Lsfq4XYgRfBmoisBkmNHuOZBj1QWNr5QltNZ8/uX9+Qges7vzgMQ5bEPjmnNhbRTaaGyiaXYTWr2EKFDXNTHOjwCLnluunIe3dzbYvd8HoNvrsbN9H201Wr87ZNIwNFqWqvDUYbEUeMK1Cke7bRGETruLsQalQZuL/9EWxEZatjcfXQWNpHE7wpyaTaXAJAZtNEqfP80xRrx4Qqz59OPHNG0HEMq6vCXhY0QiEsEYRdKYr1+0erOfRASRSIg1ZZ0jCMYa7ty5R5FVC/V1I8K1Lwg+EuuITeabzjmDMQql5sJ1qCmqnKKccXewBYAyFcJi5+8bEW53DHXl8XXEl4HEaZwzWKdBC0FqimrGNBvRb915s5I2Ni+/dk+4VuE4odHS+CJH0SH4iK8CogO1r8mrgjLPiMC9wQ6tpI2IQCzobS8+XjcirLXiwy8sf74oibVDAoDG0KBlDN1un5MdGkPEuprtjxTpbPG7442dh5WCB4+AOAMiMcj8UIRFZC4aYwDJ2P0EtLnaRfdGRvg0Dz9L8HWFrxTpYaDMhWZb0d/SGAvGJteKfy3hXrdLPtmj6dw/gyYKm0Czc3EVabUcvX6LwaB96T7V2w8p4+EBG/ceLqB9exwdvDy7hhWr94hyglL6nE33jrK6CmhzjnBiHWV++SvLbVHmKYlrnhVutDpMx/vz5L4iiEQmo31co3VWWGtDb3CXdPx6JaRFhOn4NYONLbQ25xcOmzRQSpiM9m/b7wyT4R5aK4ydp84zae00RZ5SFhnt7iau0b61Z1gRoSoystkRzWaHRqvzpu1CYYAYA1k6IsSANQ2UMUtLfIIgIeJDidGWdneAfusK86/Cq8b/4zHwfbIWXjZr4WWzFl42a+FlsxZeNmvhZfM335XIfdDC+vUAAAAASUVORK5CYII=" alt="My Catering">
+          <div class="app-name">My Catering</div>
+        </div>
+        <div class="app-body"><p>Manage catering orders from start to finish — for your catering business.</p></div>
+        <div class="app-footer">
+          <a class="open-btn" href="https://my-catering.anyapps.in" target="_blank">Open App →</a>
+          <a class="demo-btn" href="mailto:vkvcoder.support@gmail.com">Request Demo</a>
+        </div>
+      </div>
+
+      <div class="app-card clickable" data-href="https://laundry.anyapps.in" onclick="if(!event.target.closest('a')) window.open(this.dataset.href, '_blank')">
+        <div class="app-top">
+          <img class="app-logo" src="data:image/png;base64,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" alt="Laundry">
+          <div class="app-name">Laundry</div>
+        </div>
+        <div class="app-body"><p>Smart laundry ledger to track orders and payments.</p></div>
+        <div class="app-footer">
+          <a class="open-btn" href="https://laundry.anyapps.in" target="_blank">Open App →</a>
+          <a class="demo-btn" href="mailto:vkvcoder.support@gmail.com">Request Demo</a>
+        </div>
+      </div>
+
+      <div class="app-card clickable" data-href="https://rastadekho.anyapps.in" onclick="if(!event.target.closest('a')) window.open(this.dataset.href, '_blank')">
+        <div class="app-top">
+          <div class="app-logo" style="display:flex; align-items:center; justify-content:center; font-size:1.4rem; background:linear-gradient(135deg,#2f6f5e,#1c4a3d); color:#fff;">📍</div>
+          <div class="app-name">RastaDekho</div>
+        </div>
+        <div class="app-body"><p>Wayfinding made simple — suitable for large hospitals, universities, malls, and resort campuses where visitors need clear directions to reach their destination.</p></div>
+        <div class="app-footer">
+          <a class="open-btn" href="https://rastadekho.anyapps.in" target="_blank">Open App →</a>
+          <a class="demo-btn" href="mailto:vkvcoder.support@gmail.com">Request Demo</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-email">📧 vkvcoder.support@gmail.com</div>
+  <div class="footer-links">
+    <a href="mailto:vkvcoder.support@gmail.com">Support</a>
+    <a href="about.html">About</a>
+    <a href="security.html">Security</a>
+    <a href="privacy.html">Privacy Policy</a>
+  </div>
+  <div class="disclaimer">
+    <strong>Disclaimer:</strong> All app data is encrypted and securely stored. By default, servers are located within India; EU-region (Frankfurt) hosting is available for European client projects on request — see our <a href="security.html" style="color:#CBD3EA;font-weight:700;">Security page</a> for details. None of our apps collect, sell, or share your personal data with any third party.
+  </div>
+</footer>
+
+</body>
+</html>
